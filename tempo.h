@@ -11,10 +11,10 @@ public:
       QGraphicsTextItem *nameText;
       QColor nameColor;
       QColor textColor;
-      int startMeasure, endMeasure;
+      int startMeasure;
 
       TempoItem();
-      TempoItem(QString);
+      TempoItem(QString name, int startMeasure);
 };
 
 class Tempo
@@ -31,7 +31,7 @@ public:
       qreal x, y;
 
       Tempo();
-      void addTempoItem(QGraphicsScene *scene, QString name, int startMeasure, int endMeasure);
+      void addTempoItem(QGraphicsScene *scene, QString name, int startMeasure);
 };
 
 #endif // TEMPO_H

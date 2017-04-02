@@ -35,8 +35,10 @@ Dialog::Dialog(QWidget *parent) :
       }
 
       // add tempo items to score
-      score->tempo->addTempoItem(scene, "Allegro", 1, 5);
-      score->tempo->addTempoItem(scene, "Slow", 10, 25);
+      score->tempo->addTempoItem(scene, "Allegro", 2);
+      score->tempo->addTempoItem(scene, "Slow", 10);
+      score->tempo->addTempoItem(scene, "Moderato", 14);
+      score->tempo->addTempoItem(scene, "Prestissimo", 22);
 
       // color a random measure boxes
       QTimer *timer = new QTimer(this);

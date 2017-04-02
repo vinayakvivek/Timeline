@@ -1,4 +1,7 @@
 #include "tempo.h"
+#include <QDebug>
+#include <QFontMetrics>
+#include <QPainter>
 
 Tempo::Tempo() {
       name = QString("Tempo");
@@ -7,23 +10,29 @@ Tempo::Tempo() {
       nameColor = QColor(0, 20, 30, 50);
 }
 
-void Tempo::addTempoItem(QGraphicsScene *scene, QString name, int startMeasure, int endMeasure) {
-      TempoItem* newTempoItem = new TempoItem(name);
-      newTempoItem->startMeasure = startMeasure;
-      newTempoItem->endMeasure = endMeasure;
+void Tempo::addTempoItem(QGraphicsScene *scene, QString name, int startMeasure) {
+      TempoItem* newTempoItem = new TempoItem(name, startMeasure);
 
-      newTempoItem->nameBox = scene->addRect(x + nameBoxLength + nameBoxWidth*(startMeasure-1), y, nameBoxWidth*(endMeasure - startMeasure + 1), nameBoxWidth);
+      qreal xPos = x + nameBoxLength + nameBoxWidth*(startMeasure-1), yPos = y;
+      qreal paddingRight = 10;
+
+      QPainter painter;
+      QFontMetrics fm = painter.fontMetrics();
+      int boxLength = fm.width(name) + paddingRight;
+
+      newTempoItem->nameBox = scene->addRect(xPos, yPos, boxLength, nameBoxWidth);
       newTempoItem->nameBox->setBrush(QBrush(newTempoItem->nameColor));
 
       newTempoItem->nameText = scene->addText(name);
-      newTempoItem->nameText->setPos(x + nameBoxLength + nameBoxWidth*(startMeasure-1), y);
+      newTempoItem->nameText->setPos(xPos, yPos);
       newTempoItem->nameText->setDefaultTextColor(newTempoItem->textColor);
 
       tempoItems.push_back(newTempoItem);
 }
 
-TempoItem::TempoItem(QString name) {
+TempoItem::TempoItem(QString name, int startMeasure) {
       this->name = name;
-      nameColor = QColor(255, 0, 0, 200);
-      textColor = QColor(255, 255, 255, 255);
+      this->startMeasure = startMeasure;
+      nameColor = QColor(255, 0, 0, 150);
+      textColor = QColor(0,0,0, 200);
 }
