@@ -14,6 +14,7 @@ Dialog::Dialog(QWidget *parent) :
       ui(new Ui::Dialog)
 {
       ui->setupUi(this);
+      setWindowTitle("Timeline");
 
       scene = new QGraphicsScene(this);
       ui->graphicsView->setScene(scene);

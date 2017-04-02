@@ -50,6 +50,7 @@ void Score::addTempo() {
             tempo->measureBoxes.push_back(scene->addRect(QRectF(x + length + i*width, y + count * width, width, width)));
       }
 
+      y += 5;
       count++;
 }
 
@@ -63,5 +64,6 @@ void Score::addTitle() {
             scene->addText(QString("%1").arg(i))->setPos(x + length + (i-1)*width, y);
       }
 
+      y += 5;
       count++;
 }
